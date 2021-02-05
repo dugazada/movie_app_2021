@@ -1,41 +1,57 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Food({ name, picture }){
+function Food({ name, picture, rating }){
   return (<div>
   <h2>I like {name}</h2>
-  <img src={picture} />
+  <h4>{rating}/5.0</h4>
+  <img src={picture} alt={name} />
   </div>
   );
-}
+}  
 
 const foodLike =[
   {
+    id:1,
     name: 'Kimchi',
     image:'https://i.pinimg.com/originals/9f/d0/38/9fd038a367a3d54640dce5fa87085c38.png',
+    rating:5,
   },
   {
+    id:2,
     name: 'Samgyeopsal',
     image:'https://i.pinimg.com/originals/13/9b/68/139b683954c314c5195f1c4228d6dd72.jpg',
+    rating:4.5,
   },
   {
+    id:3,
     name: 'Doncasu',
     image:'https://i.pinimg.com/originals/fb/ef/4c/fbef4c995756d660685db9e0a55af39f.jpg',
+    rating:5,
   },
   {
+    id:4,
     name: 'Kimbap',
     image:'https://i.pinimg.com/originals/44/5c/fb/445cfb0b5452dbe97662e54a1aecf5e9.jpg',
+    rating:4,
   },
 ];
 
 function App() {
   return (
   <div>
-      {foodLike.map(dish => (
-      <Food name={dish.name} picture={dish.image} />
+      {foodLike.map(dish =>(
+        <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>
       ))}
   </div>
   );
 }
+
+Food.propTypes = {
+  name:PropTypes.string.isRequired,
+  picture:PropTypes.string.isRequired,
+  rating:PropTypes.number.isRequired,
+};
 
 export default App;
 
